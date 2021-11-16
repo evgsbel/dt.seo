@@ -1,0 +1,28 @@
+.nav {
+  &__list {
+    display: flex;
+  }
+  &__item {
+    &:not(:last-child) {
+      margin-right: 5em;
+    }
+  }
+  &__link {
+    display: block;
+    font-weight: 800;
+    font-size: .82em;
+    text-transform: uppercase;
+    color: $white;
+    transition: color .5s ease-in-out, transform .2s ease-in-out;
+    &:focus {
+      @include focus
+    }
+    &:hover {
+      color: $red;
+    }
+    &:active {
+      @include active
+    }
+  }
+
+}
