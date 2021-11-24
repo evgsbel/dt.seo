@@ -1,20 +1,32 @@
 .header {
   position: fixed;
   top: 0;
+  z-index: 1000;
   display: flex;
   align-items: center;
   padding: 30px;
   background-color: transparent;
   width: 100%;
   transition: opacity .5s ease-in-out, transform .5s ease-in-out, background-color .5s ease-in-out;
+  @include r(992) {
+    padding: 30px 0;
+  }
   &_fixed {
     z-index: 200;
-    background-color: rgba(0,0,0,0.5);
     transform: translateY(0);
   }
   &_hide {
     transform: translateY(-100%);
     opacity: 0;
+  }
+
+  &[data-color="black"] {
+    .logo__text,
+    .nav__link,
+    .header__link,
+    .burger {
+      color: $black;
+    }
   }
   &__link {
     display: inline-flex;
@@ -43,9 +55,30 @@
     position: relative;
     display: flex;
     justify-content: space-between;
-    z-index: 10;
+    z-index: 1000;
+    @include r(1600) {
+      justify-content: flex-end;
+    }
+  }
+  &__link {
+    @include r(768) {
+      display: none;
+    }
+    &_mobile {
+      display: none;
+      @include r(768) {
+        display: block;
+      }
+      svg {
+        width: 20px;
+        height: 23px;
+      }
+    }
   }
   &__email {
+    @include r(1600) {
+      margin-right: 20px;
+    }
     svg {
       width: 20px;
       height: 18px;

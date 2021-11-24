@@ -1,0 +1,23 @@
+.slider-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  &_prev {
+    left: -30px;
+    @include r(768) {
+      left: 0;
+    }
+  }
+  &_next {
+    right: -30px;
+    @include r(768) {
+      right: 0;
+    }
+  }
+  &__wrp {
+    position: absolute;
+    top: 50%;
+    width: 100%;
+    transform: translateY(-50%);
+  }
+}

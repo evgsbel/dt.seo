@@ -2,6 +2,11 @@
   position: relative;
   z-index: 10;
   display: flex;
+  @include r(576) {
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 20px;
+  }
   &__item {
     &:first-child {
       margin-right: 10px;

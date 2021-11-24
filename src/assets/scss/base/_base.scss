@@ -77,6 +77,9 @@ img {
 
 .flex {
   display: flex;
+  @include r(1440) {
+    flex-wrap: wrap;
+  }
   &_h-center {
     align-items: center;
   }

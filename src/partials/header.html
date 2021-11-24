@@ -1,13 +1,18 @@
 <header class="header  js-header">
   <div class="container">
     <div class="row align-items-center">
-      <div class="col-xl-1">
+      <div class="col-lg-2  col-4 order-2 order-md-0 offset-md-0 offset-3">
         {{> logo}}
       </div>
-      <div class="col-xl-4 offset-xl-3">
+      <div class="col-lg-5 col-md-1 order-md-3 order-lg-0 offset-xl-1 position-static col-1 order-0 ">
         {{> nav}}
+        <button class="btn-reset burger header__burger">
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+          <span class="burger__line"></span>
+        </button>
       </div>
-      <div class="col-xl-3 offset-xl-1">
+      <div class="col-xxl-3 col-xl-4 col-lg-5 col-md-6 offset-lg-0 offset-md-2 offset-xl-0 offset-xxl-1  col-1 order-2 order-md-0 offset-3 ">
         <div class="header__contacts">
           <a href="mailto:hello@digital.tools" class="header__link header__email">
             <svg>
@@ -20,6 +25,11 @@
               <use xlink:href="assets/img/sprite.svg#icon-phone"></use>
             </svg>
             8&nbsp;(495)&nbsp;240-83-41
+          </a>
+          <a href="tel:84952408341" class="header__link header__link_mobile">
+            <svg>
+              <use xlink:href="assets/img/sprite.svg#mobile-phone"></use>
+            </svg>
           </a>
         </div>
       </div>
