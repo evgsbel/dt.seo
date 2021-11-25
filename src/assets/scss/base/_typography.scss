@@ -62,6 +62,9 @@ ul {
   @include r(1024) {
     font-size: 4em;
   }
+  @include r(480) {
+    font-size: 3em;
+  }
 }
 .title-h2 {
   font-weight: 800;
@@ -75,6 +78,9 @@ ul {
     position: relative;
     z-index: 20;
     font-size: 3em;
+  }
+  @include r(576) {
+    font-size: 2em;
   }
 }
 .title-h3 {

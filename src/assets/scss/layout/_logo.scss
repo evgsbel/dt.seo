@@ -14,6 +14,9 @@
     font-size: 1.25em;
     line-height: 1.35;
     color: $white;
+    @include r(480) {
+      font-size: 4vw;
+    }
     &::before {
       content: '';
       position: absolute;
@@ -24,6 +27,11 @@
       height: 16px;
       background-image: url('../img/logo-dot.png');
       background-repeat: no-repeat;
+      @include r(375) {
+        background-size: cover;
+        top: 0;
+        right: -5px;
+      }
     }
     &::after {
       content: '';

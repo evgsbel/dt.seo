@@ -84,7 +84,9 @@ $(function () {
 }); // how slider
 
 var arrow_prev = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 1L2 13L14 25' stroke='black' stroke-width='2'/> </svg>",
-    arrow_next = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='black' stroke-width='2'/></svg>";
+    arrow_next = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='black' stroke-width='2'/></svg>",
+    arrow_prev_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 1L2 13L14 25' stroke='white' stroke-width='2'/> </svg>",
+    arrow_next_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='white' stroke-width='2'/></svg>";
 $('.js-how-slider').owlCarousel({
   items: 3,
   active: true,
@@ -115,7 +117,7 @@ $('.js-how-slider').owlCarousel({
   onTranslated: function onTranslated(e) {
     $(".js-how-slider .owl-item > li").eq(e.item.index).addClass("is-active");
   }
-}); // // price slider
+}); // price slider
 
 $('.js-price-slider').owlCarousel({
   items: 3,
@@ -147,4 +149,43 @@ $('.js-price-slider').owlCarousel({
   onTranslated: function onTranslated(e) {
     $(".js-price-slider .owl-item > li").eq(e.item.index).addClass("is-active");
   }
+});
+$(function () {
+  function checkWidth() {
+    var windowWidth = $('body').innerWidth(); // service slider on mobile
+
+    if (windowWidth < 992) {
+      $('.js-service-slider').owlCarousel({
+        active: true,
+        loop: true,
+        dots: false,
+        nav: true,
+        navText: [arrow_prev_white, arrow_next_white],
+        navClass: ["slider-arrow slider-arrow_prev btn-reset", "slider-arrow slider-arrow_next btn-reset"],
+        navContainerClass: 'slider-arrow__wrp',
+        responsive: {
+          // breakpoint from 0 up
+          320: {
+            items: 1,
+            margin: 5
+          },
+          640: {
+            items: 2,
+            margin: 20
+          },
+          768: {
+            items: 2,
+            margin: 30
+          }
+        }
+      });
+    } else {
+      $('.js-service-slider').trigger('destroy.owl.carousel').removeClass('js-service-slider owl-carousel owl-theme');
+    }
+  }
+
+  checkWidth();
+  $(window).resize(function () {
+    checkWidth(); // проверит при изменении размера окна клиента
+  });
 });

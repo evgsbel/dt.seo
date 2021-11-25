@@ -9,6 +9,9 @@
   border-radius: 5px;
   letter-spacing: 0.15em;
   transition: transform .5s ease-in-out;
+  @include r(576) {
+    max-width: 100%;
+  }
   &:hover {
     transform: translateY(-5px);
     color: $white;

@@ -33,6 +33,12 @@
     @include r(1440) {
       font-size: 5em;
     }
+    @include r(576) {
+      font-size: 4em;
+    }
+    @include r(375) {
+      font-size: 3em;
+    }
   }
   &__subtitle {
     max-width: 630px;
@@ -46,6 +52,10 @@
   &__btn {
     margin-top: 93px;
     @include btnPadding(24,63,19);
+    @include r(375) {
+      padding-right: 15px;
+      padding-left: 15px;
+    }
   }
   &__copy {
     position: relative;
@@ -67,6 +77,11 @@
   margin-top: 100px;
   display: flex;
   gap: 93px;
+  @include r(576) {
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+  }
   &__caption {
     font-weight: 800;
     font-size: .8em;
@@ -75,6 +90,13 @@
   }
   &__list {
     margin-top: 20px;
+    @include r(576) {
+      margin-top: 5px;
+      display: flex;
+      flex-wrap: wrap;
+      width: 100%;
+      gap: 10px;
+    }
   }
   &__link {
     font-weight: 350;

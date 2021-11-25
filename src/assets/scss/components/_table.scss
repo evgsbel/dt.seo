@@ -1,5 +1,10 @@
 .table {
   color: $white;
+  @include r(425) {
+    display: block;
+    max-width: calc(100% + 100px);
+    overflow-x: scroll;
+  }
   thead {
     th {
       font-weight: 700;

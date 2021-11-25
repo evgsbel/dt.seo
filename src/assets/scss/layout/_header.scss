@@ -93,4 +93,9 @@
       height: 22px;
     }
   }
+  &__col {
+    @include r(480) {
+    margin-left: auto;
+  }
+  }
 }

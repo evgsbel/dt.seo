@@ -59,13 +59,16 @@
 
 
 .mobile-contacts {
-  display: flex;
+  display: none;
   flex-direction: column;
   justify-content: flex-end;
   align-items: center;
   margin-bottom: 50px;
   width: 100%;
   color: #fff;
+  @include r(992) {
+    display: flex;
+  }
   &__link {
     display: block;
     margin-bottom: 20px;

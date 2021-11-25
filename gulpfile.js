@@ -118,7 +118,7 @@ function jsVendor() {
       'node_modules/jquery/dist/jquery.js',
       'node_modules/popper.js/dist/umd/popper.js',
       'node_modules/bootstrap/dist/js/bootstrap.js',
-      'node_modules/swiper/swiper-bundle.js',
+      'node_modules/owl.carousel/dist/owl.carousel.min.js',
     ])
     .pipe(dest('dist/assets/vendor/js'))
     .pipe(browserSync.stream());
@@ -129,7 +129,8 @@ function cssVendor() {
   log(chalk.red.bold('---------------COPY CSS VENDOR FILES INTO DIST---------------'));
   return src([
     'node_modules/animate.css/animate.css',
-    'node_modules/swiper/swiper.min.css',
+    'node_modules/owl.carousel/dist/assets/owl.carousel.min.css',
+    'node_modules/owl.carousel/dist/assets/owl.theme.default.min.css',
   ])
     .pipe(dest('dist/assets/vendor/css'))
     .pipe(browserSync.stream());
@@ -297,7 +298,7 @@ function concatScripts() {
       'dist/assets/vendor/js/jquery.js',
       'dist/assets/vendor/js/popper.js',
       'dist/assets/vendor/js/bootstrap.js',
-      'dist/assets/vendor/js/swiper-bundle.js',
+      'dist/assets/vendor/js/owl.carousel.min.js',
       'src/assets/js/util/*',
       'src/assets/js/*'
     ])
