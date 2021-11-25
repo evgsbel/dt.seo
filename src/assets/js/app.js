@@ -74,7 +74,8 @@ $(() => {
 const arrow_prev = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 1L2 13L14 25' stroke='black' stroke-width='2'/> </svg>",
   arrow_next = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='black' stroke-width='2'/></svg>",
   arrow_prev_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 1L2 13L14 25' stroke='white' stroke-width='2'/> </svg>",
-  arrow_next_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='white' stroke-width='2'/></svg>"
+  arrow_next_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='white' stroke-width='2'/></svg>",
+ team_arrow = "<svg width='66' height='59' viewBox='0 0 66 59' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M47.3125 58L65.125 40.1875L47.3125 22.375' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='6 6'/><path d='M65.125 40.1875H36.625C16.9493 40.1875 1 24.2382 1 4.5625V1' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='6 6'/></svg>"
 
 
 $('.js-how-slider').owlCarousel({
@@ -183,3 +184,349 @@ $(() => {
     checkWidth(); // проверит при изменении размера окна клиента
   });
 });
+
+
+$('.js-team-slider').owlCarousel({
+  items: 4,
+  active: true,
+  loop: true,
+  dots: false,
+  nav: true,
+  navText: ['', team_arrow],
+  // navText: [arrow_prev, arrow_next],
+  navClass: ["team__arrow team__arrow_prev btn-reset", "team__arrow team__arrow_next btn-reset"],
+  // navContainerClass: 'slider-arrow__wrp',
+  responsive: {
+    // breakpoint from 0 up
+    320: {
+      items: 1,
+      margin: 0
+    },
+    769: {
+      items: 3,
+      margin: 20,
+    },
+    1200: {
+      items: 4,
+      margin: 30,
+    }
+  }
+})
+
+// canvas
+
+let canvases = document.getElementsByClassName('demo-canvas');
+
+
+for (let cn = 0; cn < canvases.length; cn++) {
+  let width = window.innerWidth;
+  let height = window.innerHeight;
+  let ctx = canvases[cn].getContext('2d');
+  canvases[cn].width = width;
+  canvases[cn].height = height;
+  let points = [];
+
+  (function init() {
+    var largeHeader, animateHeader = true;
+    let target = {x: width / 2, y: height / 2};
+    // Main
+    initHeader();
+    initAnimation();
+    addListeners();
+
+    function initHeader() {
+
+
+
+      // canvas = document.querySelector('.demo-canvas');
+      // canvases[cn].width = width;
+      // canvases[cn].height = height;
+
+
+      // create points
+
+      for (var x = 0; x < width; x = x + width / 20) {
+        for (var y = 0; y < height; y = y + height / 20) {
+          var px = x + Math.random() * width / 20;
+          var py = y + Math.random() * height / 20;
+          var p = {x: px, originX: px, y: py, originY: py};
+          points.push(p);
+        }
+      }
+
+      // for each point find the 5 closest points
+      for (var i = 0; i < points.length; i++) {
+        var closest = [];
+        var p1 = points[i];
+        for (var j = 0; j < points.length; j++) {
+          var p2 = points[j]
+          if (!(p1 == p2)) {
+            var placed = false;
+            for (var k = 0; k < 5; k++) {
+              if (!placed) {
+                if (closest[k] == undefined) {
+                  closest[k] = p2;
+                  placed = true;
+                }
+              }
+            }
+
+            for (var k = 0; k < 5; k++) {
+              if (!placed) {
+                if (getDistance(p1, p2) < getDistance(p1, closest[k])) {
+                  closest[k] = p2;
+                  placed = true;
+                }
+              }
+            }
+          }
+        }
+        p1.closest = closest;
+      }
+
+      // assign a circle to each point
+      for (var i in points) {
+        var c = new Circle(points[i], 2 + Math.random() * 2, 'rgba(255,255,255,0.3)');
+        points[i].circle = c;
+      }
+    }
+
+    // Event handling
+    function addListeners() {
+      if (!('ontouchstart' in window)) {
+        window.addEventListener('mousemove', mouseMove);
+      }
+      window.addEventListener('scroll', scrollCheck);
+      // window.addEventListener('resize', resize);
+    }
+
+    function mouseMove(e) {
+      let posx = 0;
+      let posy = 0;
+      posx = e.clientX + document.body.scrollLeft;
+      posy = e.clientY + document.body.scrollTop
+      target.x = posx;
+      target.y = posy;
+    }
+
+    function scrollCheck() {
+      if (document.body.scrollTop > height) animateHeader = false;
+      else animateHeader = true;
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      largeHeader.style.height = height + 'px';
+      canvases[cn].width = width;
+      canvases[cn].height = height;
+    }
+
+    // animation
+    function initAnimation() {
+      animate();
+      for (var i in points) {
+        shiftPoint(points[i]);
+      }
+    }
+
+    function animate() {
+      if (animateHeader) {
+        ctx.clearRect(0, 0, width, height);
+        for (var i in points) {
+          // detect points in range
+          if (Math.abs(getDistance(target, points[i])) < 4000) {
+            points[i].active = 0.3;
+            points[i].circle.active = 0.6;
+          } else if (Math.abs(getDistance(target, points[i])) < 20000) {
+            points[i].active = 0.1;
+            points[i].circle.active = 0.3;
+          } else if (Math.abs(getDistance(target, points[i])) < 40000) {
+            points[i].active = 0.02;
+            points[i].circle.active = 0.1;
+          } else {
+            points[i].active = 0;
+            points[i].circle.active = 0;
+          }
+
+          drawLines(points[i]);
+          points[i].circle.draw();
+        }
+      }
+      requestAnimationFrame(animate);
+    }
+
+    function shiftPoint(p) {
+      TweenLite.to(p, 1 + 1 * Math.random(), {
+        x: p.originX - 50 + Math.random() * 100,
+        y: p.originY - 50 + Math.random() * 100, ease: Circ.easeInOut,
+        onComplete: function () {
+          shiftPoint(p);
+        }
+      });
+    }
+
+    // Canvas manipulation
+    function drawLines(p) {
+      if (!p.active) return;
+      for (var i in p.closest) {
+        ctx.beginPath();
+        ctx.moveTo(p.x, p.y);
+        ctx.lineTo(p.closest[i].x, p.closest[i].y);
+        ctx.strokeStyle = 'rgba(156,217,249,' + p.active + ')';
+        ctx.stroke();
+      }
+    }
+
+    function Circle(pos, rad, color) {
+      var _this = this;
+
+      // constructor
+      (function () {
+        _this.pos = pos || null;
+        _this.radius = rad || null;
+        _this.color = color || null;
+      })();
+
+      this.draw = function () {
+        if (!_this.active) return;
+        ctx.beginPath();
+        ctx.arc(_this.pos.x, _this.pos.y, _this.radius, 0, 2 * Math.PI, false);
+        ctx.fillStyle = 'rgba(156,217,249,' + _this.active + ')';
+        ctx.fill();
+      };
+    }
+
+    // Util
+    function getDistance(p1, p2) {
+      return Math.pow(p1.x - p2.x, 2) + Math.pow(p1.y - p2.y, 2);
+    }
+
+  }())
+}
+
+// service canvas
+
+// var window_width = $(window).width(),
+//   width = window_width,
+//   height = 800,
+//   num_dots = 900,
+//   force_gravity = 1;
+//
+// var voronoi = d3.geom.voronoi()
+//   .x(function(d) { return d.x; })
+//   .y(function(d) { return d.y; });
+//
+// var nodes = d3.range(num_dots).map(function() { return {radius: Math.random() * 3 + 2}; }),
+//   root = nodes[0],
+//   links = voronoi.links(nodes);
+// // links = d3.layout.tree().links(nodes)
+//
+// nodes.forEach(function(d, i) { d.x = (i * 3) + ((window_width / 2) - (num_dots * 1.5)); d.y = (Math.random() * 10) + 190; });
+//
+// links = [];
+//
+// for (var i = 0; i < num_dots; i++) {
+//   if (i != 0 && Math.floor(Math.random() * 3)) {
+//     links.push({"source": i, "target": Math.floor(Math.random() * (num_dots - 1)) + 1, "value": 1});
+//   }
+// }
+//
+// root.radius = 0;
+// root.fixed = true;
+//
+// var force = d3.layout.force()
+//   .gravity(0.027)
+//   .charge(function(d, i) { return i ? -13 : -200; })
+//   //.damper(0.1)
+//   .nodes(nodes)
+//   .links(links)
+//   //.size([1,3])
+//   //.linkDistance(0)
+//   .friction(0.6)
+//   //.chargeDistance(100)
+//   .linkStrength(0.6)
+//   .size([width, height]);
+//
+// force.start();
+//
+// var svg = d3.select("#graph").append("svg")
+//   .attr("width", width)
+//   .attr("height", height);
+//
+// var node = svg.selectAll("circle")
+//   .data(nodes.slice(1))
+//   .enter().append("circle")
+//   .attr("class", "node")
+//   .attr("r", function(d) { return d.radius; })
+//   .style("fill", function(d, i) { return '#45aeb1'; })
+//   .attr("opacity", function() { return Math.random() * 0.8 });
+//
+// var link = svg.selectAll("line")
+//   .data(links)
+//   .enter().append("svg:line")
+//   .attr('class', 'link')
+//   .attr("opacity", 0)
+//   .style("stroke-width", function(d) { return Math.sqrt(d.value); });
+//
+// force.on("tick", function(e) {
+//   var q = d3.geom.quadtree(nodes),
+//     i = 0,
+//     n = nodes.length;
+//
+//   while (++i < n) q.visit(collide(nodes[i]));
+//
+//   svg.selectAll("circle")
+//     .attr("cx", function(d) { return d.x; })
+//     .attr("cy", function(d) { return d.y; })
+//     .call(force.drag);
+//
+//   svg.selectAll("line.link")
+//     .attr("x1", function(d) { return d.source.x; })
+//     .attr("y1", function(d) { return d.source.y; })
+//     .attr("x2", function(d) { return d.target.x; })
+//     .attr("y2", function(d) { return d.target.y; });
+// });
+//
+// svg.on("mousemove", function() {
+//   var p1 = d3.mouse(this);
+//   root.px = p1[0];
+//   root.py = p1[1];
+//   force.resume();
+// });
+//
+// svg.on("mousedown", function() {
+//   nodes.forEach(function(o, i) {
+//     o.x += (Math.random() - .5) * 6;
+//     o.y += (Math.random() - .5) * 6;
+//   });
+//   force.resume();
+// });
+//
+// function collide(node) {
+//   var r = node.radius + 16,
+//     nx1 = node.x - r,
+//     nx2 = node.x + r,
+//     ny1 = node.y - r,
+//     ny2 = node.y + r;
+//   return function(quad, x1, y1, x2, y2) {
+//     if (quad.point && (quad.point !== node)) {
+//       var x = node.x - quad.point.x,
+//         y = node.y - quad.point.y,
+//         l = Math.sqrt(x * x + y * y),
+//         r = node.radius + quad.point.radius;
+//       if (l < r) {
+//         l = (l - r) / l * .5;
+//         node.x -= x *= l;
+//         node.y -= y *= l;
+//         quad.point.x += x;
+//         quad.point.y += y;
+//       }
+//     }
+//     return x1 > nx2 || x2 < nx1 || y1 > ny2 || y2 < ny1;
+//   };
+// }
+//
+//
+// svg.selectAll(".link").transition().duration(6000).attr("opacity", 0.1)
+
