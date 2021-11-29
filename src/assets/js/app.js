@@ -6,39 +6,61 @@ $(window).scroll(function () {
     if ($(this).offset().top < ($(window).scrollTop() + 50)) {
       currentclass = $(this).attr('data-color')
     }
+  })
+  $('header').attr('data-color', currentclass)
+})
 
+$(window).scroll(function () {
+  var currentclass
+  $('footer').each(function () {
+    if ($(this).offset().top < ($(window).scrollTop() + 50)) {
+      currentclass = $(this).attr('data-color')
+    }
   })
   $('header').attr('data-color', currentclass)
 })
 
 
 // fixed header
-function stickySidebar() {
-  var scrollDistance = $(document).scrollTop(),
-    headerHeight = $('.header').outerHeight(true),
-    // sidebarHeight = $('aside').outerHeight(true),
-    footerOffsetTop = $('.js-stop-header').offset().top,
-    $header = $('header');
+let timer = null;
+window.addEventListener('scroll', function() {
 
-  if (scrollDistance >= headerHeight) {
-    $header.addClass('header_fixed');
-    $header.removeClass('header_hide');
-  } else {
-    $header.removeClass('header_fixed');
+  if(timer !== null) {
+    clearTimeout(timer);
+    document.querySelector('header').classList.add('out', 'header_fixed');
+    function stickySidebar() {
+      var scrollDistance = $(document).scrollTop(),
+        headerHeight = $('.header').outerHeight(true),
+        // sidebarHeight = $('aside').outerHeight(true),
+        footerOffsetTop = $('.js-stop-header').offset().top,
+        $header = $('header');
+
+      if (scrollDistance >= headerHeight) {
+        $header.addClass('header_fixed');
+
+      } else {
+        $header.removeClass('header_fixed');
+      }
+
+      if (scrollDistance + headerHeight >= footerOffsetTop) {
+        $header.removeClass('header_fixed');
+        $header.addClass('out');
+      }
+    }
+
+    stickySidebar();
+
+    $(document).scroll(function () {
+      stickySidebar();
+    });
   }
+  timer = setTimeout(function() {
+    document.querySelector('header').classList.remove('out');
 
-  if (scrollDistance + headerHeight >= footerOffsetTop) {
-    $header.removeClass('header_fixed');
-    $header.addClass('header_hide');
-  }
+  }, 800);
+}, false);
 
-}
 
-stickySidebar();
-
-$(document).scroll(function () {
-  stickySidebar();
-});
 
 //ancors btn
 const anchors = document.querySelectorAll('button[data-ancor*="#"]')
@@ -70,17 +92,28 @@ $(() => {
   });
 })
 
-// how slider
+
+// slider arrows
 const arrow_prev = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 1L2 13L14 25' stroke='black' stroke-width='2'/> </svg>",
   arrow_next = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='black' stroke-width='2'/></svg>",
   arrow_prev_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M14 1L2 13L14 25' stroke='white' stroke-width='2'/> </svg>",
   arrow_next_white = "<svg width='15' height='26' viewBox='0 0 15 26' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M1 1L13 13L1 25' stroke='white' stroke-width='2'/></svg>",
   team_arrow = "<svg width='66' height='59' viewBox='0 0 66 59' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M47.3125 58L65.125 40.1875L47.3125 22.375' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='6 6'/><path d='M65.125 40.1875H36.625C16.9493 40.1875 1 24.2382 1 4.5625V1' stroke='black' stroke-linecap='round' stroke-linejoin='round' stroke-dasharray='6 6'/></svg>"
 
-
+//how slider
+$('.js-how-slider-second').owlCarousel({
+  loop:true,
+  margin: 30,
+  smartSpeed: 800,
+  items:1,
+  dots:false,
+  nav: false,
+  URLhashListener:true
+})
 $('.js-how-slider').owlCarousel({
   items: 3,
   active: true,
+  smartSpeed: 800,
   loop: true,
   dots: false,
   nav: true,
@@ -108,13 +141,24 @@ $('.js-how-slider').owlCarousel({
   onTranslated: function (e) {
     $(".js-how-slider .owl-item > li").eq(e.item.index).addClass("is-active");
   },
+  URLhashListener:true
 })
 
 // price slider
 
+$('.js-price-slider-second').owlCarousel({
+  loop:true,
+  margin: 30,
+  smartSpeed: 800,
+  items:1,
+  dots:false,
+  nav: false,
+  URLhashListener:true
+})
 $('.js-price-slider').owlCarousel({
   items: 3,
   active: true,
+  smartSpeed: 800,
   loop: true,
   dots: false,
   nav: true,
@@ -142,6 +186,7 @@ $('.js-price-slider').owlCarousel({
   onTranslated: function (e) {
     $(".js-price-slider .owl-item > li").eq(e.item.index).addClass("is-active");
   },
+  URLhashListener:true
 })
 
 
@@ -236,3 +281,4 @@ $('.js-team-slider').owlCarousel({
     }
   }
 })
+

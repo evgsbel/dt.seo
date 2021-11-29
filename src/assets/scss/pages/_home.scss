@@ -538,6 +538,20 @@
   &__list {
     position: relative;
     margin-top: 87px;
+    &::before {
+      content: '';
+      position: absolute;
+      bottom: -40px;
+      left: 10%;
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 0 40px 20px 40px;
+      border-color: transparent transparent $white transparent;
+      @include r(768) {
+        left: 40%;
+      }
+    }
   }
   &__item {
     display: flex;
@@ -560,7 +574,7 @@
       transition: fill .5s ease-in-out, stroke .5s ease-in-out;
     }
     &:hover,
-    &.is-active {
+    &.is-active, {
       color: $black;
       svg {
         fill: $green;
@@ -595,29 +609,13 @@
   }
   &__inner {
     position: relative;
-    padding-top: 100px;
-    padding-bottom: 29px;
+    padding: 100px 20px 29px;
     @include r(768) {
       padding-top: 30px;
-    }
-    &::before {
-      content: '';
-      position: absolute;
-      top: -20px;
-      left: 10%;
-      width: 0;
-      height: 0;
-      border-style: solid;
-      border-width: 0 40px 20px 40px;
-      border-color: transparent transparent $white transparent;
-      @include r(768) {
-        left: 40%;
-      }
     }
   }
   &__caption {
     margin-bottom: 60px;
-    max-width: 490px;
     font-weight: 800;
     font-size: 2.5em;
     line-height: 1.25;
@@ -947,7 +945,7 @@
     z-index: 10;
     @include btnPadding(24, 80, 19);
     background: linear-gradient(90deg, #FFFFFF 0%, #FFFFFF 49.48%, #FFFFFF 100%);
-    box-shadow: 0px 20px 50px rgba(152, 152, 152, 0.35);
+    box-shadow: 0px 20px 20px rgba(152, 152, 152, 0.35);
     color: $black;
     @include r(1200) {
       @include btnPadding(20, 50, 16);
@@ -1034,6 +1032,12 @@
     background-color: $green;
     color: $white;
     text-align: center;
+    @include r(1680) {
+      font-size: 22px;
+    }
+    @include r(1440) {
+      font-size: 18px;
+    }
   }
   &__icon {
     position: absolute;

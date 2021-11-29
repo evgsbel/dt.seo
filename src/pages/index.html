@@ -331,21 +331,21 @@ script: main
       <div class="col-xl-8 offset-xl-2 col-md-10 offset-md-1">
         <h2 class="title-h2 how__title">Как мы продвигаем</h2>
         <ul class="how__list flex flex_all-sb js-how-slider owl-carousel owl-theme">
-          <li class="how__item is-active">
+          <li class="how__item is-active" data-hash="three">
             <svg>
               <use xlink:href="assets/img/sprite.svg#h-icon-01"></use>
             </svg>
             <p class="how__caption">Разрабатываем подробную
               структуру сайта</p>
           </li>
-          <li class="how__item">
+          <li class="how__item" data-hash="four">
             <svg>
               <use xlink:href="assets/img/sprite.svg#h-icon-02"></use>
             </svg>
             <p class="how__caption">Собираем семантическое ядро
               и анализируем конкурентов</p>
           </li>
-          <li class="how__item">
+          <li class="how__item" data-hash="five">
             <svg>
               <use xlink:href="assets/img/sprite.svg#h-icon-03"></use>
             </svg>
@@ -364,10 +364,38 @@ script: main
       <div class="col-md-3 col-xl-2 structure__img">
         <img class="" src="assets/img/structure-bg.png" alt=""/>
       </div>
-      <div class="col-xl-8 col-md-9">
-        <div class="structure__inner">
+      <div class="col-xl-8 col-md-9 js-how-slider-second owl-carousel owl-theme">
+        <div class="structure__inner" data-hash="three">
           <p class="structure__caption">Разрабатываем подробную
             структуру сайта</p>
+          <p class="structure__text">Наша основная задача – на каждую потребность потенциального посетителя создать
+            страницу, которая решает эту потребность. Например, если человек хочет купить <a href="">iPhone</a>, то он должен попасть
+            именно на страницу со смартфонами <a href="">Apple</a>, а не на общий каталог телефонов.</p>
+          <p class="structure__text">Структура сайта, как скелет человека, то, на чем все держится. Планирование
+            структуры сайты – один из важнейших этапов проекта. Не бойтесь потратить свое время на данную работу, даже
+            если проект кажется простым и понятным.
+          </p>
+          <p class="structure__text">Обращаю внимание, что данный материал не учебник, а описание моего личного опыта и
+            подхода к работе. Как показала практика, подход рабочий и дает хороший результат, а это уже достаточный
+            повод, чтобы им поделится.</p>
+        </div>
+        <div class="structure__inner" data-hash="four">
+          <p class="structure__caption">Собираем семантическое ядро
+            и анализируем конкурентов</p>
+          <p class="structure__text">Наша основная задача – на каждую потребность потенциального посетителя создать
+            страницу, которая решает эту потребность. Например, если человек хочет купить <a href="">iPhone</a>, то он должен попасть
+            именно на страницу со смартфонами <a href="">Apple</a>, а не на общий каталог телефонов.</p>
+          <p class="structure__text">Структура сайта, как скелет человека, то, на чем все держится. Планирование
+            структуры сайты – один из важнейших этапов проекта. Не бойтесь потратить свое время на данную работу, даже
+            если проект кажется простым и понятным.
+          </p>
+          <p class="structure__text">Обращаю внимание, что данный материал не учебник, а описание моего личного опыта и
+            подхода к работе. Как показала практика, подход рабочий и дает хороший результат, а это уже достаточный
+            повод, чтобы им поделится.</p>
+        </div>
+        <div class="structure__inner" data-hash="five">
+          <p class="structure__caption">Проводим комплексный
+            технический аудит</p>
           <p class="structure__text">Наша основная задача – на каждую потребность потенциального посетителя создать
             страницу, которая решает эту потребность. Например, если человек хочет купить <a href="">iPhone</a>, то он должен попасть
             именно на страницу со смартфонами <a href="">Apple</a>, а не на общий каталог телефонов.</p>
@@ -497,19 +525,19 @@ script: main
       <div class="col-xl-8  offset-xl-2 col-md-10 offset-md-1">
         <h2 class="title-h2 how__title">Цены на услуги SEO</h2>
         <ul class="how__list flex flex_all-sb js-price-slider owl-carousel owl-theme">
-          <li class="how__item is-active">
+          <li class="how__item is-active" data-hash="zero">
             <svg>
               <use xlink:href="assets/img/sprite.svg#h-icon-04"></use>
             </svg>
             <p class="how__caption">Цена по типу сайтов</p>
           </li>
-          <li class="how__item">
+          <li class="how__item" data-hash="one">
             <svg>
               <use xlink:href="assets/img/sprite.svg#h-icon-05"></use>
             </svg>
             <p class="how__caption">Цена при оплате за результат</p>
           </li>
-          <li class="how__item">
+          <li class="how__item" data-hash="two">
             <svg>
               <use xlink:href="assets/img/sprite.svg#h-icon-06"></use>
             </svg>
@@ -527,9 +555,69 @@ script: main
       <div class="col-md-3 col-xl-2 structure__img">
         <img class="price__img" src="assets/img/price-bg.png" alt=""/>
       </div>
-      <div class="col-xl-8 col-md-9">
-        <div class="structure__inner">
+      <div class="col-xl-8 col-md-9 owl-carousel owl-theme js-price-slider-second">
+        <div class="structure__inner" data-hash="zero">
           <p class="structure__caption">Цена по типу сайтов</p>
+          <ul class="price__list">
+            <li class="price__item">
+              <p class="price__title price__text">Базовый аудит</p>
+              <p class="price__sum price__text">Бесплатно</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение сайта визитки</p>
+              <p class="price__sum price__text">от 56 875 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение сайта услуг</p>
+              <p class="price__sum price__text">от 70 150 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение портала</p>
+              <p class="price__sum price__text">от 81 000 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение интернет-магазина</p>
+              <p class="price__sum price__text">от 95 000 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+          </ul>
+        </div>
+        <div class="structure__inner" data-hash="one">
+          <p class="structure__caption">Цена при оплате за результат</p>
+          <ul class="price__list">
+            <li class="price__item">
+              <p class="price__title price__text">Базовый аудит</p>
+              <p class="price__sum price__text">Бесплатно</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение сайта визитки</p>
+              <p class="price__sum price__text">от 56 875 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение сайта услуг</p>
+              <p class="price__sum price__text">от 70 150 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение портала</p>
+              <p class="price__sum price__text">от 81 000 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+            <li class="price__item">
+              <p class="price__title price__text">Продвижение интернет-магазина</p>
+              <p class="price__sum price__text">от 95 000 ₽</p>
+              <button class="btn-reset btn price__btn">Узнать стоимость</button>
+            </li>
+          </ul>
+        </div>
+        <div class="structure__inner" data-hash="two">
+          <p class="structure__caption">Цена на разовые услуги</p>
           <ul class="price__list">
             <li class="price__item">
               <p class="price__title price__text">Базовый аудит</p>
