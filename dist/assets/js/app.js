@@ -281,4 +281,34 @@ $('.js-team-slider').owlCarousel({
       margin: 30
     }
   }
+}); // app portfolio slider
+
+$('.js-app-portfolio-slider').owlCarousel({
+  items: 3,
+  active: true,
+  loop: true,
+  dots: false,
+  nav: true,
+  navText: ['', team_arrow],
+  // navText: [arrow_prev, arrow_next],
+  navClass: ["team__arrow team__arrow_prev btn-reset", "team__arrow team__arrow_next btn-reset"],
+  // navContainerClass: 'slider-arrow__wrp',
+  responsive: {
+    // breakpoint from 0 up
+    320: {
+      items: 1,
+      margin: 0
+    },
+    480: {
+      items: 2,
+      margin: 10
+    },
+    769: {
+      items: 3,
+      margin: 20
+    },
+    1400: {
+      margin: 30
+    }
+  }
 });

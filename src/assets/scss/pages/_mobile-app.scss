@@ -1,0 +1,216 @@
+.is-mobile-app-page {
+  .hero {
+    background-image: url(../img/hero-bg-app.jpg);
+    background-size: auto;
+
+    @include r(768) {
+      background-size: cover;
+    }
+  }
+  .hero__list {
+    z-index: 10;
+    &::after {
+      content: '';
+      position: absolute;
+      top: -60px;
+      right: -40px;
+      width: 487px;
+      height: 950px;
+      background-image: url(../img/app-item-bg.png);
+      background-repeat: no-repeat;
+      @include r(1440) {
+        max-height: 100vh;
+      }
+      @include r(1024) {
+        content: none;
+      }
+    }
+  }
+}
+
+.app-portfolio {
+  padding: 100px 0;
+  &__decor {
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      height: 308px;
+      background-repeat: no-repeat;
+      z-index: -1;
+    }
+    &::before {
+      left: 8.33333%;;
+      bottom: -65px;
+      width: 628px;
+      background-image: url('../img/dots-left.png');
+      @include r(768) {
+        left: 0;
+        max-width: 100%;
+      }
+    }
+    &::after {
+      right: 8.33333%;;
+      top: 0;
+      width: 308px;
+      background-image: url('../img/dots-right.png');
+      @include r(768) {
+        right: 0;
+        max-width: 100%;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: 75px;
+  }
+  &__subtitle {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 29px;
+    color: #A1B0C7;
+  }
+  &__btn {
+    @include btnPadding(24, 80, 19);
+    @include r(1440) {
+      @include btnPadding(24, 49, 19);
+    }
+    @include r(960) {
+      @include btnPadding(24, 20, 19);
+    }
+    @include r(768) {
+      display: block;
+      margin: 20px auto 0;
+    }
+  }
+  &__caption {
+    display: flex;
+    margin-bottom: 50px;
+    gap: 10px;
+    svg {
+      width: 40px;
+      height: 40px;
+    }
+  }
+  &__description {
+    margin-bottom: 50px;
+    font-weight: 350;
+    font-size: 20px;
+    line-height: 29px;
+  }
+  &__slider {
+    position: relative;
+    margin-top: 80px;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      width: 100px;
+      height: 3px;
+      background-color: $green;
+      @include r(768) {
+        content: none;
+      }
+    }
+    &::before {
+      left: -100px;
+      top: 70%;
+      @include r(1200) {
+        left: -50px;
+      }
+    }
+    &::after {
+      right: -100px;
+      top: 10%;
+      @include r(1200) {
+        right: -50px;
+        z-index: -1;
+      }
+    }
+  }
+  &__slide-img {
+    display: block;
+    margin-bottom: 60px;
+  }
+  &__slide-descr {
+    font-weight: 350;
+    font-size: 20px;
+    line-height: 29px;
+  }
+}
+
+
+.app-peculiar {
+  margin-top: 100px;
+  padding: 100px 0;
+  background-image: url('../img/app-peculiar-bg.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  &__decor {
+    position: relative;
+    &::before,
+    &::after {
+      content: '';
+      position: absolute;
+      height: 308px;
+      background-repeat: no-repeat;
+      opacity: .2;
+    }
+    &::before {
+      left: 8.33333%;;
+      bottom: -65px;
+      width: 628px;
+      background-image: url('../img/dots-left.png');
+      @include r(768) {
+        left: 0;
+        max-width: 100%;
+      }
+    }
+    &::after {
+      right: 8.33333%;;
+      top: 0;
+      width: 308px;
+      background-image: url('../img/dots-right.png');
+      @include r(768) {
+        right: 0;
+        max-width: 100%;
+      }
+    }
+  }
+  &__title {
+    margin-bottom: 75px;
+    color: #fff;
+  }
+  &__subtitle {
+    font-weight: 300;
+    font-size: 20px;
+    line-height: 29px;
+    color: #A1B0C7;
+  }
+  &__btn {
+    @include btnPadding(24, 49, 19);
+    @include r(768) {
+      display: block;
+      margin: 20px auto 0;
+    }
+  }
+  &__caption {
+    display: flex;
+    margin-bottom: 50px;
+    gap: 10px;
+    color: #fff;
+    svg {
+      width: 39px;
+      height: 38px;
+    }
+  }
+  &__content {
+    font-weight: 350;
+    font-size: 20px;
+    line-height: 29px;
+    color: #fff;
+    p:not(:last-child) {
+      margin-bottom: 25px;
+    }
+  }
+}

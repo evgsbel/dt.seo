@@ -96,6 +96,8 @@
     }
   }
   &__item {
+    position: relative;
+    z-index: 10;
     display: flex;
     justify-content: flex-end;
     align-items: center;
@@ -1124,19 +1126,23 @@
       width: 100px;
       height: 3px;
       background-color: $green;
+      @include r(768) {
+        content: none;
+      }
     }
     &::before {
       left: -100px;
       top: 35%;
       @include r(1200) {
-        left: 0;
+        left: -50px;
       }
     }
     &::after {
       right: -100px;
-      top: 30px;
+      top: 10%;
       @include r(1200) {
-        right: 0;
+        right: -50px;
+        z-index: -1;
       }
     }
   }
