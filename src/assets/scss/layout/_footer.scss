@@ -178,5 +178,10 @@
       font-size: 1em;
     }
   }
+  .canvas {
+    @include r(1024) {
+      display: none;
+    }
+  }
 }
 

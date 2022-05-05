@@ -22,3 +22,41 @@
     transform: scale(.95);
   }
 }
+
+.zoom-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  background: linear-gradient(90deg, #CB000E 0%, #E70A35 49.48%, #CB000E 100%);
+  box-shadow: 0px 20px 50px rgba(255, 3, 51, 0.5);
+  svg {
+    width: 33px;
+    height: 33px;
+    transition: transform .5s ease-in-out;
+  }
+  &:hover {
+    svg {
+      transform: rotate(180deg);
+    }
+  }
+  &_center {
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+  }
+  &_right {
+    right: 20%;
+    @include r(1024) {
+      right: 50%;
+    }
+  }
+  &_left {
+    left: 20%;
+  }
+}
